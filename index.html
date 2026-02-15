@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRP Solutions | Expertise Technologique Humaine</title>
+    <meta name="description" content="Conseil en technologie, solutions digitales sur mesure, optimisation supply chain et formation accessible par MRP Solutions.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: rgb(5, 47, 117);
+            --secondary: rgb(222, 230, 232);
+            --accent-red: rgb(153, 27, 27);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+        .bg-primary { background-color: var(--primary); }
+        .text-primary { color: var(--primary); }
+        .bg-secondary { background-color: var(--secondary); }
+        .text-accent-red { color: var(--accent-red); }
+        .logo-font { font-family: 'Playfair Display', serif; }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Logo MRP */
+        .logo-container {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-diamond {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid #94a3b8;
+            transform: rotate(45deg) scale(0.8);
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .logo-text {
+            position: relative;
+            z-index: 10;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-style: italic;
+            display: flex;
+            align-items: baseline;
+        }
+
+        /* Expertises Blocks Style */
+        .expertise-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .expertise-card:hover {
+            transform: translateY(-10px);
+        }
+        .skill-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 9999px;
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+            white-space: nowrap;
+        }
+        .expertise-block-header {
+            border-left: 6px solid var(--accent-red);
+            padding-left: 1.5rem;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.564.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.41.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="logo-container">
+                        <div class="logo-diamond group-hover:border-primary transition-colors"></div>
+                        <div class="logo-text logo-font">
+                            <span class="text-primary">M</span>
+                            <span class="text-accent-red -ml-0.5">R</span>
+                            <span class="text-primary -ml-0.5">P</span>
+                        </div>
+                    </div>
+                    <span class="text-2xl font-bold text-primary tracking-tight">Solutions</span>
+                </a>
+
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="#expertises" class="text-gray-700 hover:text-primary font-semibold transition-colors">Expertises</a>
+                    <a href="#contact" class="bg-primary text-white px-8 py-3 rounded-2xl font-bold hover:bg-blue-900 transition-all shadow-lg active:scale-95">
+                        Démarrer un projet
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-primary">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-2xl absolute top-full left-0 w-full border-t border-gray-100 p-6 space-y-4">
+            <a href="#expertises" class="block text-xl font-bold text-gray-800">Expertises</a>
+            <a href="#contact" class="block w-full text-center bg-primary text-white py-4 rounded-xl font-bold">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative pt-40 pb-24 md:pt-56 md:pb-40 overflow-hidden bg-slate-50">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-secondary/30 rounded-l-[150px] -z-10 hidden lg:block"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl space-y-10">
+                <h1 class="text-6xl md:text-8xl font-black text-gray-900 leading-[0.95] tracking-tight">
+                    La technologie <br><span class="text-primary italic">au service</span><br> de l'humain.
+                </h1>
+                <p class="text-2xl text-gray-600 font-light leading-relaxed max-w-2xl">
+                    MRP Solutions accompagne les entreprises dans leur transformation digitale et logistique avec une approche pédagogique, pragmatique et inclusive.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 pt-4">
+                    <a href="#expertises" class="bg-primary text-white px-12 py-6 rounded-3xl text-xl font-bold hover:bg-blue-900 transition-all shadow-2xl shadow-primary/20 text-center">
+                        Découvrir nos Expertises
+                    </a>
+                    <a href="#contact" class="bg-white border-2 border-gray-200 text-gray-700 px-12 py-6 rounded-3xl text-xl font-bold hover:border-primary hover:text-primary transition-all text-center">
+                        Nous contacter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertises Section -->
+    <section id="expertises" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-24 text-center">
+                <span class="text-accent-red font-black uppercase tracking-[0.3em] text-sm">Ce que nous faisons</span>
+                <h2 class="text-5xl md:text-7xl font-black text-gray-900 mt-4 tracking-tighter">Nos 4 Piliers d'Expertise</h2>
+                <div class="w-24 h-2 bg-primary mx-auto mt-8 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-20">
+                
+                <!-- 1. SOLUTIONS DIGITALES -->
+                <div class="group">
+                    <div class="expertise-block-header mb-12">
+                        <h3 class="text-4xl font-black text-gray-900 mb-2 uppercase tracking-tight">SOLUTIONS DIGITALES SUR MESURE</h3>
+                        <p class="text-2xl text-primary font-light italic">"Je crée des outils informatiques qui simplifient votre quotidien professionnel"</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="expertise-card bg-slate-50 p-8 rounded-[2.5rem] border border-transparent hover:border-primary/20 hover:bg-white shadow-sm hover:shadow-xl">
+                            <h4 class="font-bold text-xl mb-4 text-gray-900">Automatisation Intelligente</h4>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Libérez votre temps en automatisant les tâches répétitives et chronophages.</p>
+                            <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200">
+                                <span class="skill-tag">Power Automate</span><span class="skill-tag">VBA Excel</span><span class="skill-tag">API</span><span class="skill-tag">Python</span><span class="skill-tag">M365</span><span class="skill-tag">IA Prompts</span>
+                            </div>
+                        </div>
+                        <div class="expertise-card bg-slate-50 p-8 rounded-[2.5rem] border border-transparent hover:border-primary/20 hover:bg-white shadow-sm hover:shadow-xl">
+                            <h4 class="font-bold text-xl mb-4 text-gray-900">Applications Mobiles</h4>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Développement d'apps intuitives pour vos besoins spécifiques sur le terrain.</p>
+                            <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200">
+                                <span class="skill-tag">iOS/Android</span><span class="skill-tag">React Native</span><span class="skill-badge">Flutter</span><span class="skill-tag">UX/UI</span><span class="skill-tag">DB</span>
+                            </div>
+                        </div>
+                        <div class="expertise-card bg-slate-50 p-8 rounded-[2.5rem] border border-transparent hover:border-primary/20 hover:bg-white shadow-sm hover:shadow-xl">
+                            <h4 class="font-bold text-xl mb-4 text-gray-900">Solutions en Ligne</h4>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Plateformes web accessibles partout, tout le temps, avec une sécurité maximale.</p>
+                            <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200">
+                                <span class="skill-tag">SaaS</span><span class="skill-tag">Full-stack</span><span class="skill-tag">Web Security</span><span class="skill-tag">Responsive</span>
+                            </div>
+                        </div>
+                        <div class="expertise-card bg-slate-50 p-8 rounded-[2.5rem] border border-transparent hover:border-primary/20 hover:bg-white shadow-sm hover:shadow-xl">
+                            <h4 class="font-bold text-xl mb-4 text-gray-900">Accompagnement Technique</h4>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Guide stratégique pour vos choix technologiques et migrations systèmes.</p>
+                            <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200">
+                                <span class="skill-tag">Audit</span><span class="skill-tag">Needs Analysis</span><span class="skill-tag">Roadmap</span><span class="skill-tag">Architecture</span><span class="skill-tag">Migration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. FORMATION -->
+                <div class="group">
+                    <div class="expertise-block-header mb-12" style="border-left-color: var(--primary);">
+                        <h3 class="text-4xl font-black text-gray-900 mb-2 uppercase tracking-tight">FORMATION & DÉVELOPPEMENT DES COMPÉTENCES</h3>
+                        <p class="text-2xl text-primary font-light italic">"J'accompagne vos équipes pour maîtriser les outils du quotidien"</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="expertise-card bg-slate-50 p-10 rounded-[2.5rem] border border-transparent hover:border-primary/20 hover:bg-white shadow-sm hover:shadow-xl">
+                            <h4 class="font-bold text-2xl mb-4 text-gray-900">Maîtrise de Microsoft 365</h4>
+                            <p class="text-gray-600 mb-8 leading-relaxed">Formez vos collaborateurs aux outils de productivité modernes pour un gain de temps immédiat.</p>
+                            <div class="flex flex-wrap gap-2 pt-6 border-t border-slate-200">
+                                <span class="skill-tag">Excel Avancé</span><span class="skill-tag">Power BI</span><span class="skill-tag">SharePoint</span><span class="skill-tag">Teams</span><span class="skill-tag">OneDrive</span><span class="skill-tag">Planner</span><span class="skill-tag">Power Apps</span><span class="skill-tag">Power Automate</span>
+                            </div>
+                        </div>
+                        <div class="expertise-card bg-slate-50 p-10 rounded-[2.5rem] border border-transparent hover:border-primary/20 hover:bg-white shadow-sm hover:shadow-xl">
+                            <h4 class="font-bold text-2xl mb-4 text-gray-900">Automatisation Accessible</h4>
+                            <p class="text-gray-600 mb-8 leading-relaxed">Apprenez à créer vos propres solutions sans être développeur (Low-code/No-code).</p>
+                            <div class="flex flex-wrap gap-2 pt-6 border-t border-slate-200">
+                                <span class="skill-tag">VBA Excel</span><span class="skill-tag">Macros</span><span class="skill-tag">Power Automate</span><span class="skill-tag">Formules</span><span class="skill-tag">Pivot Tables</span><span class="skill-tag">Power Query</span><span class="skill-tag">Power BI</span>
+                            </div>
+                        </div>
+                        <div class="expertise-card bg-slate-50 p-10 rounded-[2.5rem] border border-transparent hover:border-primary/20 hover:bg-white shadow-sm hover:shadow-xl">
+                            <h4 class="font-bold text-2xl mb-4 text-gray-900">IA Pratique</h4>
+                            <p class="text-gray-600 mb-8 leading-relaxed">Découvrez comment l'Intelligence Artificielle peut réellement transformer votre travail quotidien.</p>
+                            <div class="flex flex-wrap gap-2 pt-6 border-t border-slate-200">
+                                <span class="skill-tag">Prompt Engineering</span><span class="skill-tag">ChatGPT/Claude</span><span class="skill-tag">AI Automation</span><span class="skill-tag">M365 Copilot</span><span class="skill-tag">Use Cases</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. SUPPLY CHAIN -->
+                <div class="group">
+                    <div class="expertise-block-header mb-12">
+                        <h3 class="text-4xl font-black text-gray-900 mb-2 uppercase tracking-tight">OPTIMISATION SUPPLY CHAIN</h3>
+                        <p class="text-2xl text-primary font-light italic">"J'améliore la performance de vos opérations de A à Z"</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="expertise-card bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-xl">
+                            <h4 class="font-bold text-xl mb-4 text-blue-400">Sécurité & Traçabilité</h4>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed">Suivez vos produits en temps réel sans erreur grâce à des outils digitaux robustes.</p>
+                            <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+                                <span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">WMS</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">ERP</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">QC</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">Dashboards</span>
+                            </div>
+                        </div>
+                        <div class="expertise-card bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-xl">
+                            <h4 class="font-bold text-xl mb-4 text-blue-400">Performance Opérationnelle</h4>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed">Réduisez le gaspillage et gagnez en efficacité avec les meilleures méthodes.</p>
+                            <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+                                <span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">Lean</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">Kanban</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">5S</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">KPI</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">VSM</span>
+                            </div>
+                        </div>
+                        <div class="expertise-card bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-xl">
+                            <h4 class="font-bold text-xl mb-4 text-blue-400">Technologies d'ID</h4>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed">Systèmes d'étiquetage et de lecture mobile pour une automatisation totale.</p>
+                            <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+                                <span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">RFID</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">Barcodes</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">QR</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">Zebra/Datamax</span>
+                            </div>
+                        </div>
+                        <div class="expertise-card bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-xl">
+                            <h4 class="font-bold text-xl mb-4 text-blue-400">Stratégie Logistique</h4>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed">Optimisez l'ensemble de votre chaîne pour plus de réactivité.</p>
+                            <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+                                <span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">Diagnosis</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">Inventory</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">S&OP</span><span class="skill-tag bg-slate-800 text-slate-300 border-slate-700">JIT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. ACCOMPAGNEMENT PUBLICS FRAGILES -->
+                <div class="group">
+                    <div class="expertise-block-header mb-12" style="border-left-color: #10b981;">
+                        <h3 class="text-4xl font-black text-gray-900 mb-2 uppercase tracking-tight">ACCOMPAGNEMENT DES PUBLICS FRAGILES</h3>
+                        <p class="text-2xl text-primary font-light italic">"Je rends la technologie accessible à tous"</p>
+                    </div>
+                    <div class="bg-emerald-50 p-12 rounded-[3rem] border border-emerald-100 flex flex-col md:flex-row items-center gap-12">
+                        <div class="md:w-2/3">
+                            <h4 class="text-3xl font-bold text-emerald-900 mb-6">Seniors et Personnes Isolées</h4>
+                            <p class="text-xl text-emerald-700 leading-relaxed mb-8 font-light">
+                                Une formation adaptée et bienveillante pour rompre la fracture numérique. Nous apprenons à votre rythme pour vous redonner confiance avec vos outils quotidiens.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="skill-tag bg-white text-emerald-600 border-emerald-200">Pédagogie Adaptée</span>
+                                <span class="skill-tag bg-white text-emerald-600 border-emerald-200">Intro Mobile/Tablette/Ordinateur</span>
+                                <span class="skill-tag bg-white text-emerald-600 border-emerald-200">Sécurité en ligne</span>
+                                <span class="skill-tag bg-white text-emerald-600 border-emerald-200">Conseil</span>
+                                <span class="skill-tag bg-white text-emerald-600 border-emerald-200">Social Connection</span>
+                                <span class="skill-tag bg-white text-emerald-600 border-emerald-200">Gestions et négociation des contrats</span>
+                            </div>
+                        </div>
+                        <div class="md:w-1/3">
+                            <img src="images/inclusion.jpg" alt="Inclusion Numérique" class="rounded-[2rem] shadow-lg grayscale hover:grayscale-0 transition-all duration-700">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+   <!-- Contact -->
+<section id="contact" class="py-32 bg-primary text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div>
+                <h2 class="text-6xl font-black mb-8 leading-tight tracking-tight">Parlons de <br>votre projet.</h2>
+                <p class="text-2xl text-blue-100/70 font-light mb-12">Expertise technique, regard humain. MRP Solutions vous accompagne là où vous en avez besoin.</p>
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-white/10 p-3 rounded-full">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xl">morganerouchonpailler@mrp63.onmicrosoft.com</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-white/10 p-3 rounded-full">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xl">France & Europe</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-[3rem] p-12 text-gray-900 shadow-2xl">
+                <!-- FORMSPREE FORM -->
+                <form id="contact-form" action="https://formspree.io/f/xnjbdbbj" method="POST" class="space-y-8">
+                    <input type="text" name="name" placeholder="Votre Nom" class="w-full px-6 py-5 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-primary/20 outline-none text-lg" required>
+                    <input type="email" name="email" placeholder="Email Professionnel" class="w-full px-6 py-5 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-primary/20 outline-none text-lg" required>
+                    <textarea name="message" rows="4" placeholder="Votre Besoin..." class="w-full px-6 py-5 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-primary/20 outline-none text-lg resize-none" required></textarea>
+                    <button type="submit" class="w-full bg-primary text-white py-6 rounded-2xl font-black text-xl hover:bg-blue-900 shadow-xl transition-all">Envoyer</button>
+                </form>
+                <!-- SUCCESS MESSAGE -->
+                <div id="form-success" class="hidden text-center py-10">
+                    <div class="text-green-500 text-6xl mb-4">✓</div>
+                    <h3 class="text-3xl font-black mb-2 tracking-tight">Message envoyé !</h3>
+                    <p class="text-gray-500 text-lg">Nous revenons vers vous d'ici 24h.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT POUR GÉRER L'ENVOI ET LE SUCCÈS -->
+    <script>
+        const form = document.getElementById('contact-form');
+        const success = document.getElementById('form-success');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    success.classList.remove('hidden');
+                } else {
+                    alert("Erreur lors de l'envoi. Veuillez réessayer.");
+                }
+            })
+            .catch(() => {
+                alert("Erreur réseau. Vérifiez votre connexion.");
+            });
+        });
+    </script>
+</section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-white py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-16">
+                <a href="#" class="flex items-center space-x-3 mb-8 md:mb-0">
+                    <div class="logo-container">
+                        <div class="logo-diamond !border-gray-700"></div>
+                        <div class="logo-text logo-font">
+                            <span class="text-white">M</span>
+                            <span class="text-red-500 -ml-0.5">R</span>
+                            <span class="text-white -ml-0.5">P</span>
+                        </div>
+                    </div>
+                    <span class="text-3xl font-black text-white">Solutions</span>
+                </a>
+                <div class="flex space-x-12 text-gray-500 font-bold uppercase tracking-widest text-xs">
+                    <a href="#expertises" class="hover:text-white transition-colors">Expertises</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                    <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-700 border-t border-white/5 pt-10">
+                <p>© 2024 MRP Solutions. Expertise Technologique Humaine.</p>
+                <p class="mt-4 md:mt-0 italic">"Rendre la technologie accessible à tous, sans exception."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Interactivité basique
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('glass-nav', 'shadow-md', 'py-3');
+            else nav.classList.remove('glass-nav', 'shadow-md', 'py-3');
+        });
+
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        const form = document.getElementById('contact-form');
+        const success = document.getElementById('form-success');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+        });
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
